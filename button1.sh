@@ -31,13 +31,8 @@ case ${STATUS} in
         # Do nothing for stopping gracefully for now, or unknown
         ;;
 esac
-
-
-
-
 shopt -s nullglob
 cd ${MEDIADIR}/sequences
-
 
 # The only configuration expected by the user is to set the
 # SEQUENCES variable here at the top of the script.  Here are
@@ -53,8 +48,6 @@ cd ${MEDIADIR}/sequences
 # NOTE: You must include the .fseq file extension since this is a list
 #       of file names.
 SEQUENCES=("Its Beginning to Look a Lot like Christmas.fseq" "Christmas Every Day-ShowStopper.fseq")
-
-
 
 # Exit the script immediately if we're already playing
 #if [ ! $(fpp -s | cut -d',' -f 2) -eq 0 ]; then
