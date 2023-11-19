@@ -108,10 +108,6 @@ printf '%s\n' "$(sed '1d' ${database})" > ${database}
 # than the last in our current set to avoid repeats.
 check_sequence_and_create_database "$(head -n 1 ${database})"
 
-# Get our current status
-STATUS=$(fpp -s | cut -d',' -f2)
-PLAYLIST=$(fpp -s | cut -d',' -f4)
-
 # Check that we got something meaningful
 if [ -z "${STATUS}" ]; then
     echo "Error with status value" >&2
