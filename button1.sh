@@ -13,24 +13,6 @@ if [ -z "${STATUS}" ]; then
     exit 1
 fi
 
-# Act on the current status
-case ${STATUS} in
-    # IDLE
-    0)
-        fpp -P LionKing
-        ;;
-    # PLAYING
-    1)
-        if [[ "${PLAYLIST}" == "Background" ]]; then
-            echo "BackgroundPlaying" >&2
-            fpp -P LionKing
-        fi
-        ;;
-    # STOPPING GRACEFULLY
-    2|*)
-        # Do nothing for stopping gracefully for now, or unknown
-        ;;
-esac
 shopt -s nullglob
 cd ${MEDIADIR}/sequences
 
@@ -107,12 +89,6 @@ printf '%s\n' "$(sed '1d' ${database})" > ${database}
 # entry left in the file we queue up the new set with a different SEQUENCES
 # than the last in our current set to avoid repeats.
 check_sequence_and_create_database "$(head -n 1 ${database})"
-
-# Check that we got something meaningful
-if [ -z "${STATUS}" ]; then
-    echo "Error with status value" >&2
-    exit 1
-fi
 
 # Act on the current status
 case ${STATUS} in
